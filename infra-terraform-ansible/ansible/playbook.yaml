@@ -1,0 +1,22 @@
+---
+- name: Configure newly launched EC2 instance
+  hosts: all
+  gather_facts: yes
+  become: yes  # Use sudo to perform tasks as root
+  become_user: root  # Run tasks as root
+  vars:
+    ansible_ssh_private_key_file: /path/of/pemfile/ 
+    ansible_user: ubuntu 
+
+  tasks:
+  - name: Install Packages
+    apt:
+      name:
+        - nginx
+      state: present 
+
+  - name: Start Nginx Service
+    service:
+      name: nginx
+      state: started 
+      enabled: yes
