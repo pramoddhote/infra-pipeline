@@ -1,0 +1,21 @@
+---
+# Main tasks for installing and starting Nginx
+
+- name: Install Nginx
+  apt:
+    name: "{{ nginx_package_name }}"
+    state: present
+  become: yes
+
+- name: Start and enable Nginx service
+  service:
+    name: "{{ nginx_service_name }}"
+    state: started
+    enabled: yes
+
+- name: Deploy custom index.html
+  copy:
+    src: "{{ nginx_index_file }}"
+    dest: "{{ nginx_web_root }}/index.html"
+  notify: restart nginx
+

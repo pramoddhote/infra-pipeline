@@ -1,0 +1,37 @@
+---
+- hosts: web
+  become: yes
+  tasks:
+    - name: Stop Nginx service
+      ansible.builtin.service:
+        name: nginx
+        state: stopped
+
+    - name: Uninstall Nginx
+      ansible.builtin.package:
+        name: nginx
+        state: absent
+
+    - name: Remove default Nginx index file
+      ansible.builtin.file:
+        path: /var/www/html/index.html
+        state: absent
+
+    - name: Remove Nginx configuration files
+      ansible.builtin.file:
+        path: /etc/nginx
+        state: absent
+        recurse: yes
+
+    - name: Remove Nginx cache and logs
+      ansible.builtin.file:
+        path: /var/log/nginx
+        state: absent
+        recurse: yes
+
+    - name: Remove Nginx document root
+      ansible.builtin.file:
+        path: /var/www/html
+        state: absent
+        recurse: yes
+

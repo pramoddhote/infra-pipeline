@@ -1,0 +1,7 @@
+---
+# defaults file for nginx
+
+nginx_package_name: nginx
+nginx_web_root: /var/www/html
+nginx_index_file: index.html
+nginx_service_name: nginx

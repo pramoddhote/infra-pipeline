@@ -1,0 +1,7 @@
+---
+# Handlers for restarting Nginx
+- name: restart nginx
+  service:
+    name: "{{ nginx_service_name }}"
+    state: restarted
+
