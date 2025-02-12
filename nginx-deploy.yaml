@@ -2,14 +2,18 @@
 - name: Nginx Deployment
   hosts: all
   become: yes
+
   tasks:
+  - name: Update apt cache
+    shell: apt-get update
+
   - name: Install python3-apt
-    package:
+    apt:
       name: python3-apt
       state: present
 
   - name: Install Nginx
-    package:
+    apt:
       name: nginx
       state: present
 
