@@ -2,6 +2,11 @@
 - name: Nginx Deployment
   hosts: all
   tasks:
+  - name: Install python3-apt
+    apt:
+      name: python3-apt
+      state: present
+
   - name: Install Nginx
     apt:
       name: nginx
@@ -24,4 +29,3 @@
     service:
       name: nginx
       state: restarted
-
