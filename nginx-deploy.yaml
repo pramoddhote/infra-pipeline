@@ -4,6 +4,11 @@
   become: yes
 
   tasks:
+  - name: Update apt cache
+    apt:
+      update_cache: yes
+      disable_python3_apt_dependency_check: yes
+    
   - name: Install Nginx
     apt:
       name: nginx
